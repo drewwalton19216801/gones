@@ -20,12 +20,18 @@ func main() {
 	cpu.ConnectBus(mainbus)
 	cart := NewCartridge("test.nes")
 	if cart.ImageValid() {
+		// Convert the cart name to a string, except for the last EOF byte
+		cartName := string(cart.header.Name[:len(cart.header.Name)-1])
+		fmt.Printf("Cartridge name: %s\n", cartName)
 		mainbus.insertCartridge(cart)
 	} else {
 		fmt.Println("Failed to load cartridge")
 		return
 	}
 	cpu.Reset()
+
+	// Don't spit out logs
+	rl.SetTraceLogLevel(rl.LogNone)
 
 	rl.InitWindow(680, 480, "Gones")
 	defer rl.CloseWindow()

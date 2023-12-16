@@ -66,6 +66,17 @@ func NewCartridge(filename string) *Cartridge {
 		panic(err)
 	}
 
+	// Copy the header data into the header struct
+	copy(header.Name[:], headerBytes[:4])
+	header.PrgROMChunks = headerBytes[4]
+	header.ChrROMChunks = headerBytes[5]
+	header.Mapper1 = headerBytes[6]
+	header.Mapper2 = headerBytes[7]
+	header.PrgRAMSize = headerBytes[8]
+	header.TVSystem1 = headerBytes[9]
+	header.TVSystem2 = headerBytes[10]
+	copy(header.Unused[:], headerBytes[11:])
+
 	// If a "trainer" exists, skip it
 	if headerBytes[6] != 0 {
 		_, err = file.Seek(512, 1)
@@ -112,6 +123,7 @@ func NewCartridge(filename string) *Cartridge {
 	// Return a new cartridge
 	c := &Cartridge{
 		mirror:     mirror,
+		header:     header,
 		mapperId:   mapperId,
 		prgBanks:   prgBanks,
 		chrBanks:   chrBanks,

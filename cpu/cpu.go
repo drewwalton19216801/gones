@@ -44,6 +44,10 @@ func New() *CPU6502 {
 	return &CPU6502{}
 }
 
+func (c *CPU6502) ConnectBus(bus Bus) {
+	c.bus = bus
+}
+
 func (c *CPU6502) Reset() {
 	// Reset internal registers
 	c.a = 0

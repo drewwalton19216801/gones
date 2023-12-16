@@ -63,6 +63,30 @@ func (c *CPU6502) Reset() {
 	c.cycles = 8
 }
 
+// SetFlag sets or clears a flag in the CPU6502 status register.
+//
+// Parameters:
+// - flag: the flag to be set or cleared.
+// - set: a boolean indicating whether the flag should be set (true) or cleared (false).
+func (c *CPU6502) SetFlag(flag byte, set bool) {
+	if set {
+		c.status |= flag
+	} else {
+		c.status &= ^flag
+	}
+}
+
+// GetFlag returns the value of a specific flag in the CPU6502 status register.
+//
+// Parameters:
+//   - flag: the flag to check.
+//
+// Returns:
+//   - bool: the value of the flag (true if it is set, false otherwise).
+func (c *CPU6502) GetFlag(flag byte) bool {
+	return (c.status & flag) != 0
+}
+
 // getRegister returns the value of the specified register in the CPU6502 struct.
 //
 // reg: The register to retrieve the value from.
@@ -84,6 +108,10 @@ func (c *CPU6502) GetRegister(reg byte) byte {
 	}
 }
 
+// GetPC returns the value of the program counter.
+//
+// No parameters.
+// Returns a uint16 value representing the program counter.
 func (c *CPU6502) GetPC() uint16 {
 	return c.programCounter
 }

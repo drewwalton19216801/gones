@@ -1,5 +1,7 @@
 package cpu
 
+import "fmt"
+
 // AddressingMode is an enum for addressing modes
 type AddressingMode uint8
 
@@ -51,6 +53,72 @@ func (mode AddressingMode) String() string {
 		return "IndirectIndexed"
 	default:
 		return "Unknown"
+	}
+}
+
+// executeAddressingMode executes the given addressing mode of the CPU6502.
+//
+// mode: The addressing mode to execute.
+// Returns: The result of the executed addressing mode.
+func (c *CPU6502) executeAddressingMode(mode AddressingMode) int {
+	c.addressingMode = mode
+
+	switch mode {
+	case Implicit:
+		return c.implicit()
+	case Accumulator:
+		return c.accumulator()
+	case Immediate:
+		return c.immediate()
+	case ZeroPage:
+		return c.zeroPage()
+	case ZeroPageX:
+		return c.zeroPageX()
+	case ZeroPageY:
+		return c.zeroPageY()
+	case Relative:
+		return c.relative()
+	case Absolute:
+		return c.absolute()
+	case AbsoluteX:
+		return c.absoluteX()
+	case AbsoluteY:
+		return c.absoluteY()
+	case Indirect:
+		return c.indirect()
+	case IndexedIndirect:
+		return c.indexedIndirect()
+	case IndirectIndexed:
+		return c.indirectIndexed()
+	default:
+		return 0
+	}
+}
+
+func (c *CPU6502) GetOperandString(mode AddressingMode, address uint16) string {
+	switch mode {
+	case Immediate:
+		return fmt.Sprintf("#$%02X", c.bus.Read(address))
+	case ZeroPage:
+		return fmt.Sprintf("$%02X", c.bus.Read(address))
+	case ZeroPageX:
+		return fmt.Sprintf("$%02X,X", c.bus.Read(address))
+	case ZeroPageY:
+		return fmt.Sprintf("$%02X,Y", c.bus.Read(address))
+	case Absolute:
+		return fmt.Sprintf("$%04X", ((uint16(c.bus.Read(address)) << 8) | uint16(c.bus.Read(address+1))))
+	case AbsoluteX:
+		return fmt.Sprintf("$%04X,X", ((uint16(c.bus.Read(address)) << 8) | uint16(c.bus.Read(address+1))))
+	case AbsoluteY:
+		return fmt.Sprintf("$%04X,Y", ((uint16(c.bus.Read(address)) << 8) | uint16(c.bus.Read(address+1))))
+	case Indirect:
+		return fmt.Sprintf("($%04X)", ((uint16(c.bus.Read(address)) << 8) | uint16(c.bus.Read(address+1))))
+	case IndexedIndirect:
+		return fmt.Sprintf("($%02X,X)", c.bus.Read(address))
+	case IndirectIndexed:
+		return fmt.Sprintf("($%02X),Y", c.bus.Read(address))
+	default:
+		return ""
 	}
 }
 

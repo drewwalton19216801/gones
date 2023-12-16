@@ -142,7 +142,7 @@ func (c *Cartridge) ImageValid() bool {
 
 func (c *Cartridge) cpuRead(addr uint16, data *byte) bool {
 	mappedAddress := uint32(0)
-	if c.mapper.cpuMapRead(addr, mappedAddress) {
+	if c.mapper.cpuMapRead(addr, &mappedAddress) {
 		*data = c.prgMemory[mappedAddress]
 		return true
 	} else {
@@ -152,7 +152,7 @@ func (c *Cartridge) cpuRead(addr uint16, data *byte) bool {
 
 func (c *Cartridge) cpuWrite(addr uint16, data byte) bool {
 	mappedAddress := uint32(0)
-	if c.mapper.cpuMapWrite(addr, mappedAddress) {
+	if c.mapper.cpuMapWrite(addr, &mappedAddress) {
 		c.prgMemory[mappedAddress] = data
 		return true
 	} else {

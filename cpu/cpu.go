@@ -35,9 +35,9 @@ func (c *CPU6502) Reset() {
 	c.a = 0
 	c.x = 0
 	c.y = 0
-	c.programCounter = 0
-	c.stackPointer = 0
-	c.status = 0
+	c.programCounter = (uint16(c.bus.Read(0xFFFC)) << 8) | uint16(c.bus.Read(0xFFFD))
+	c.stackPointer = 0xFD
+	c.status = 0x24
 }
 
 // getRegister returns the value of the specified register in the CPU6502 struct.

@@ -1,5 +1,7 @@
 package cpu
 
+import "fmt"
+
 type CPU6502 struct {
 	a              byte
 	x              byte
@@ -114,4 +116,46 @@ func (c *CPU6502) GetRegister(reg byte) byte {
 // Returns a uint16 value representing the program counter.
 func (c *CPU6502) GetPC() uint16 {
 	return c.programCounter
+}
+
+// SetRegister sets the value of a specific register in the CPU6502.
+//
+// Parameters:
+//
+//	reg: The register to set. Possible values are RegA, RegX, RegY, RegSP, and RegP.
+//	value: The value to set the register to.
+func (c *CPU6502) SetRegister(reg byte, value byte) {
+	switch reg {
+	case RegA:
+		c.a = value
+	case RegX:
+		c.x = value
+	case RegY:
+		c.y = value
+	case RegSP:
+		c.stackPointer = value
+	case RegP:
+		c.status = value
+	}
+}
+
+// SetPC sets the program counter of the CPU6502.
+//
+// value: the value to set the program counter to.
+func (c *CPU6502) SetPC(value uint16) {
+	c.programCounter = value
+}
+
+// GetCycles returns the number of cycles remaining in the current step.
+//
+// It does not take any parameters.
+// It returns an integer representing the number of cycles.
+func (c *CPU6502) GetCycles() int {
+	return c.cycles
+}
+
+// String returns a string representation of the CPU6502.
+func (c *CPU6502) String() string {
+	return fmt.Sprintf("A: 0x%02X X: 0x%02X Y: 0x%02X P: 0x%02X SP: 0x%02X, PC: 0x%04X",
+		c.a, c.x, c.y, c.status, c.stackPointer, c.programCounter)
 }

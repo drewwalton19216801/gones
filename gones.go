@@ -16,6 +16,15 @@ const (
 
 func main() {
 	cpu := cpu6502.New()
+	mainbus := NewBus(cpu)
+	cpu.ConnectBus(mainbus)
+	cart := NewCartridge("test.nes")
+	if cart.ImageValid() {
+		mainbus.insertCartridge(cart)
+	} else {
+		fmt.Println("Failed to load cartridge")
+		return
+	}
 	cpu.Reset()
 
 	rl.InitWindow(680, 480, "Gones")

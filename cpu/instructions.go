@@ -285,3 +285,293 @@ var InstructionTable = map[uint8]InstructionInfo{
 	0x9A: {TXS, 0x9A, Implicit, 2, (*CPU6502).txs},
 	0x98: {TYA, 0x98, Implicit, 2, (*CPU6502).tya},
 }
+
+func DecodeInstruction(opcode byte) InstructionInfo {
+	return InstructionTable[opcode]
+}
+
+// Placeholder for illegal instruction
+func (c *CPU6502) xxx() int {
+	// Panic
+	panic("illegal or unimplemented instruction: " + string(c.opcode))
+}
+
+func (c *CPU6502) adc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) and() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) asl() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bcc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bcs() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) beq() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bit() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bmi() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bne() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bpl() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) brk() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bvc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) bvs() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) clc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) cld() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) cli() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) clv() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) cmp() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) cpx() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) cpy() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) dec() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) dex() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) dey() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) eor() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) inc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) inx() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) iny() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) jmp() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) jsr() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) lda() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) ldx() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) ldy() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) lsr() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) nop() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) ora() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) pha() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) php() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) pla() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) plp() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) rol() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) ror() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) rti() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) rts() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sbc() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sec() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sed() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sei() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sta() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) stx() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) sty() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) tax() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) tay() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) tsx() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) txa() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) txs() int {
+	// Unimplemented
+	return c.xxx()
+}
+
+func (c *CPU6502) tya() int {
+	// Unimplemented
+	return c.xxx()
+}
